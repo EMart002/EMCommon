@@ -8,10 +8,10 @@
 
 import Foundation
 
-func *(lhs:Double, rhs:Int) -> Double {
+public func *(lhs:Double, rhs:Int) -> Double {
     return lhs * Double(rhs)
 }
 
-func *(lhs:Int, rhs:Double) -> Double {
+public func *(lhs:Int, rhs:Double) -> Double {
     return Double(lhs) * rhs
 }

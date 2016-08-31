@@ -8,14 +8,14 @@
 
 import Foundation
 
-extension NSDate {
+public extension NSDate {
     
-    func stringWithFormat(dateFormat:String!) -> String? {
+    public func stringWithFormat(dateFormat:String!) -> String? {
         
         return self.stringWithFormat(dateFormat, timezone: nil)
     }
     
-    func stringWithFormat(dateFormat:String!, timezone:NSTimeZone?) -> String? {
+    public func stringWithFormat(dateFormat:String!, timezone:NSTimeZone?) -> String? {
     
         let df = NSDateFormatter()
         df.dateFormat = dateFormat

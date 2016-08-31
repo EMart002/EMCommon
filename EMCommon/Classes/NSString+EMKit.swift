@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension NSString {
+public extension NSString {
     
-    func size(font: UIFont!, contraintSize:CGSize!) -> CGSize {
+    public func size(font: UIFont!, contraintSize:CGSize!) -> CGSize {
     
         if self.respondsToSelector(Selector("boundingRectWithSize:options:attributes:context:")) {
             
@@ -23,7 +23,7 @@ extension NSString {
         return CGSizeZero;
     }
     
-    func numberOfLines(font: UIFont!, contraintSize:CGSize!) -> Int {
+    public func numberOfLines(font: UIFont!, contraintSize:CGSize!) -> Int {
         
         let aSize:CGSize = NSString(string: "A").size(font, contraintSize:CGSizeMake(CGFloat.max, CGFloat.max))
         let textSize:CGSize = self.size(font, contraintSize:contraintSize)

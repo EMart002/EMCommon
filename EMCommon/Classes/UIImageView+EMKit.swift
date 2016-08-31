@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension UIImageView {
+public extension UIImageView {
 
-    func scaleTo(widthConstraint widthConstraint:CGFloat) -> Double {
+    public func scaleTo(widthConstraint widthConstraint:CGFloat) -> Double {
         guard widthConstraint > 0 else {
             return Double.infinity
         }
@@ -25,7 +25,7 @@ extension UIImageView {
         return Double(scale)
     }
     
-    func scaleTo(heightConstraint heightConstraint:CGFloat) -> Double {
+    public func scaleTo(heightConstraint heightConstraint:CGFloat) -> Double {
         guard heightConstraint > 0 else {
             return Double.infinity
         }

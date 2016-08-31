@@ -8,17 +8,17 @@
 
 import UIKit
 
-extension UILabel {
+public extension UILabel {
     
-    func optimizeForOneLine() {
+    public func optimizeForOneLine() {
         adjustSize(widthConstraint: CGFloat.max, heightConstraint: CGFloat.max)
     }
     
-    func adjustHeight() {
+    public func adjustHeight() {
         adjustHeight(widthConstraint: CGRectGetWidth(self.frame))
     }
     
-    func adjustHeight(widthConstraint widthConstraint:CGFloat) {
+    public func adjustHeight(widthConstraint widthConstraint:CGFloat) {
         guard self.text != nil
             && self.font != nil else {
             
@@ -31,21 +31,21 @@ extension UILabel {
         self.adjustHeight(widthConstraint: widthConstraint, heightConstraint: CGFloat.max)
     }
     
-    func adjustHeight(widthConstraint widthConstraint:CGFloat, heightConstraint:CGFloat) {
+    public func adjustHeight(widthConstraint widthConstraint:CGFloat, heightConstraint:CGFloat) {
         let constraintSize = CGSizeMake(widthConstraint, heightConstraint)
         
         self.numberOfLines = self.text!.numberOfLines(self.font!, contraintSize: constraintSize)
         self.height = self.text!.size(self.font!, contraintSize: constraintSize).height
     }
     
-    func adjustWidth(widthConstraint widthConstraint:CGFloat, heightConstraint:CGFloat) {
+    public func adjustWidth(widthConstraint widthConstraint:CGFloat, heightConstraint:CGFloat) {
         let constraintSize = CGSizeMake(widthConstraint, heightConstraint)
         
         self.numberOfLines = self.text!.numberOfLines(self.font!, contraintSize: constraintSize)
         self.width = self.text!.size(self.font!, contraintSize: constraintSize).width
     }
     
-    func adjustSize(widthConstraint widthConstraint:CGFloat, heightConstraint:CGFloat) {
+    public func adjustSize(widthConstraint widthConstraint:CGFloat, heightConstraint:CGFloat) {
         let constraintSize = CGSizeMake(widthConstraint, heightConstraint)
         
         self.numberOfLines = self.text!.numberOfLines(self.font!, contraintSize: constraintSize)
