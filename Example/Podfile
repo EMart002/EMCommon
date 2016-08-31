@@ -1,0 +1,6 @@
+use_frameworks!
+target 'EMCommon_Tests' do
+  pod 'EMCommon', :path => '../'
+  
+  
+end
