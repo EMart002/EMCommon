@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIImageView {
 
-    public func scaleTo(widthConstraint widthConstraint:CGFloat) -> Double {
+    public func scaleTo(widthConstraint:CGFloat) -> Double {
         guard widthConstraint > 0 else {
             return Double.infinity
         }
@@ -18,14 +18,14 @@ public extension UIImageView {
             return 0
         }
         
-        var scale = widthConstraint / (self.image?.size.width)!
+        let scale = widthConstraint / (self.image?.size.width)!
         self.width = widthConstraint
         self.height = scale * (self.image?.size.height)!
         
         return Double(scale)
     }
     
-    public func scaleTo(heightConstraint heightConstraint:CGFloat) -> Double {
+    public func scaleTo(heightConstraint:CGFloat) -> Double {
         guard heightConstraint > 0 else {
             return Double.infinity
         }
@@ -33,7 +33,7 @@ public extension UIImageView {
             return 0
         }
         
-        var scale = (self.image?.size.height)! / heightConstraint
+        let scale = (self.image?.size.height)! / heightConstraint
         self.height = heightConstraint
         self.width = scale * (self.image?.size.width)!
         

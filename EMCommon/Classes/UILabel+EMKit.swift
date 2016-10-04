@@ -11,14 +11,14 @@ import UIKit
 public extension UILabel {
     
     public func optimizeForOneLine() {
-        adjustSize(widthConstraint: CGFloat.max, heightConstraint: CGFloat.max)
+        adjustSize(widthConstraint: CGFloat.greatestFiniteMagnitude, heightConstraint: CGFloat.greatestFiniteMagnitude)
     }
     
     public func adjustHeight() {
-        adjustHeight(widthConstraint: CGRectGetWidth(self.frame))
+        adjustHeight(widthConstraint: self.frame.width)
     }
     
-    public func adjustHeight(widthConstraint widthConstraint:CGFloat) {
+    public func adjustHeight(widthConstraint:CGFloat) {
         guard self.text != nil
             && self.font != nil else {
             
@@ -28,25 +28,25 @@ public extension UILabel {
         }
         
         
-        self.adjustHeight(widthConstraint: widthConstraint, heightConstraint: CGFloat.max)
+        self.adjustHeight(widthConstraint: widthConstraint, heightConstraint: CGFloat.greatestFiniteMagnitude)
     }
     
-    public func adjustHeight(widthConstraint widthConstraint:CGFloat, heightConstraint:CGFloat) {
-        let constraintSize = CGSizeMake(widthConstraint, heightConstraint)
+    public func adjustHeight(widthConstraint:CGFloat, heightConstraint:CGFloat) {
+        let constraintSize = CGSize(width: widthConstraint, height: heightConstraint)
         
         self.numberOfLines = self.text!.numberOfLines(self.font!, contraintSize: constraintSize)
         self.height = self.text!.size(self.font!, contraintSize: constraintSize).height
     }
     
-    public func adjustWidth(widthConstraint widthConstraint:CGFloat, heightConstraint:CGFloat) {
-        let constraintSize = CGSizeMake(widthConstraint, heightConstraint)
+    public func adjustWidth(widthConstraint:CGFloat, heightConstraint:CGFloat) {
+        let constraintSize = CGSize(width: widthConstraint, height: heightConstraint)
         
         self.numberOfLines = self.text!.numberOfLines(self.font!, contraintSize: constraintSize)
         self.width = self.text!.size(self.font!, contraintSize: constraintSize).width
     }
     
-    public func adjustSize(widthConstraint widthConstraint:CGFloat, heightConstraint:CGFloat) {
-        let constraintSize = CGSizeMake(widthConstraint, heightConstraint)
+    public func adjustSize(widthConstraint:CGFloat, heightConstraint:CGFloat) {
+        let constraintSize = CGSize(width: widthConstraint, height: heightConstraint)
         
         self.numberOfLines = self.text!.numberOfLines(self.font!, contraintSize: constraintSize)
         self.size = self.text!.size(self.font!, contraintSize: constraintSize)
