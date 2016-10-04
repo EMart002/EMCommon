@@ -24,7 +24,7 @@ public extension UIView {
     
     public var x: CGFloat! {
         get {
-            return CGRectGetMinX(self.frame)
+            return self.frame.minX
         }
         set(newValue) {
             var rect: CGRect = self.frame
@@ -35,7 +35,7 @@ public extension UIView {
     
     public var y: CGFloat! {
         get {
-            return CGRectGetMinY(self.frame)
+            return self.frame.minY
         }
         set(newValue) {
             var rect: CGRect = self.frame
@@ -57,7 +57,7 @@ public extension UIView {
     
     public var width: CGFloat! {
         get {
-            return CGRectGetWidth(self.frame)
+            return self.frame.width
         }
         set(newValue) {
             var rect: CGRect = self.frame
@@ -68,7 +68,7 @@ public extension UIView {
     
     public var height: CGFloat! {
         get {
-            return CGRectGetHeight(self.frame)
+            return self.frame.height
         }
         set(newValue) {
             var rect: CGRect = self.frame
@@ -98,125 +98,125 @@ public extension UIView {
     
     @IBInspectable public var borderColor: UIColor {
         get {
-            return UIColor(CGColor: layer.borderColor!)
+            return UIColor(cgColor: layer.borderColor!)
         }
         set {
-            layer.borderColor = newValue.CGColor;
+            layer.borderColor = newValue.cgColor;
         }
     }
     
-    public func alignTop(offset: CGFloat!) {
+    public func alignTop(_ offset: CGFloat!) {
         self.y = offset;
     }
     
-    public func alignLeft(offset: CGFloat!) {
+    public func alignLeft(_ offset: CGFloat!) {
         self.x = offset;
     }
     
-    public func alignRight(offset: CGFloat!) {
-        self.x = CGRectGetWidth(self.superview!.frame) - self.width - offset
+    public func alignRight(_ offset: CGFloat!) {
+        self.x = self.superview!.frame.width - self.width - offset
 
     }
     
-    public func alignRight(size:CGSize!, offset: CGFloat!) {
+    public func alignRight(_ size:CGSize!, offset: CGFloat!) {
         self.x = size.width - self.width - offset
     }
     
-    public func alignRight(rect:CGRect!, offset: CGFloat!) {
-        self.x = CGRectGetWidth(rect) - self.width - offset
+    public func alignRight(_ rect:CGRect!, offset: CGFloat!) {
+        self.x = rect.width - self.width - offset
     }
     
-    public func alignBottom(offset: CGFloat!) {
-        self.y = CGRectGetHeight(self.superview!.frame) - self.height - offset
+    public func alignBottom(_ offset: CGFloat!) {
+        self.y = self.superview!.frame.height - self.height - offset
     }
     
-    public func alignBottom(size:CGSize!, offset: CGFloat!) {
+    public func alignBottom(_ size:CGSize!, offset: CGFloat!) {
         self.y = size.height - self.height - offset
     }
     
-    public func alignBottom(rect:CGRect!, offset: CGFloat!) {
-        self.y = CGRectGetHeight(rect) - self.height - offset
+    public func alignBottom(_ rect:CGRect!, offset: CGFloat!) {
+        self.y = rect.height - self.height - offset
     }
     
-    public func alignBelow(view:UIView!, offset:CGFloat!) {
-        guard let brotherView = view where view.superview == self.superview else {
+    public func alignBelow(_ view:UIView!, offset:CGFloat!) {
+        guard let brotherView = view , view.superview == self.superview else {
             print("Brotherview \(view) has not the same superview as self \(self)")
             return
         }
-        self.y = CGRectGetMaxY(brotherView.frame) + offset
+        self.y = brotherView.frame.maxY + offset
     }
     
-    public func alignAbove(view:UIView!, offset:CGFloat!) {
-        guard let brotherView = view where view.superview == self.superview else {
+    public func alignAbove(_ view:UIView!, offset:CGFloat!) {
+        guard let brotherView = view , view.superview == self.superview else {
             print("Brotherview \(view) has not the same superview as self \(self)")
             return
         }
-        self.y = CGRectGetMinY(brotherView.frame) - self.height - offset
+        self.y = brotherView.frame.minY - self.height - offset
     }
     
-    public func alignTrailing(view:UIView!, offset:CGFloat!) {
-        guard let brotherView = view where view.superview == self.superview else {
+    public func alignTrailing(_ view:UIView!, offset:CGFloat!) {
+        guard let brotherView = view , view.superview == self.superview else {
             print("Brotherview \(view) has not the same superview as self \(self)")
             return
         }
-        self.x = CGRectGetMaxX(brotherView.frame) + offset
+        self.x = brotherView.frame.maxX + offset
     }
     
-    public func alignLeading(view:UIView!, offset:CGFloat!) {
-        guard let brotherView = view where view.superview == self.superview else {
+    public func alignLeading(_ view:UIView!, offset:CGFloat!) {
+        guard let brotherView = view , view.superview == self.superview else {
             print("Brotherview \(view) has not the same superview as self \(self)")
             return
         }
-        self.x = CGRectGetMinX(brotherView.frame) - self.width - offset
+        self.x = brotherView.frame.minX - self.width - offset
     }
     
-    public func resizeHorizontal(leftOffset:CGFloat!, rightOffset:CGFloat!) {
+    public func resizeHorizontal(_ leftOffset:CGFloat!, rightOffset:CGFloat!) {
         self.x = leftOffset
-        self.width = CGRectGetWidth(self.superview!.frame) - leftOffset - rightOffset
+        self.width = self.superview!.frame.width - leftOffset - rightOffset
     }
     
-    public func resizeHorizontal(firstView:UIView!, secondView:UIView!, leftOffset:CGFloat!, rightOffset:CGFloat!) {
-        guard let firstBrotherView = firstView where firstView.superview == self.superview else {
+    public func resizeHorizontal(_ firstView:UIView!, secondView:UIView!, leftOffset:CGFloat!, rightOffset:CGFloat!) {
+        guard let firstBrotherView = firstView , firstView.superview == self.superview else {
             print("Brotherview \(firstView) has not the same superview as self \(self)")
             return
         }
-        guard let secondBrotherView = secondView where secondView.superview == self.superview else {
+        guard let secondBrotherView = secondView , secondView.superview == self.superview else {
             print("Brotherview \(secondView) has not the same superview as self \(self)")
             return
         }
         
-        self.x = CGRectGetMaxX(firstBrotherView.frame) + leftOffset
-        self.width = CGRectGetMinX(secondBrotherView.frame) - self.x - rightOffset
+        self.x = firstBrotherView.frame.maxX + leftOffset
+        self.width = secondBrotherView.frame.minX - self.x - rightOffset
     }
     
-    public func resizeVertical(topOffset:CGFloat!, bottomOffset:CGFloat!) {
+    public func resizeVertical(_ topOffset:CGFloat!, bottomOffset:CGFloat!) {
         self.y = topOffset
-        self.height = CGRectGetHeight(self.superview!.frame) - topOffset - bottomOffset
+        self.height = self.superview!.frame.height - topOffset - bottomOffset
     }
     
-    public func resizeVertical(firstView:UIView!, secondView:UIView!, topOffset:CGFloat!, bottomOffset:CGFloat!) {
-        guard let firstBrotherView = firstView where firstView.superview == self.superview else {
+    public func resizeVertical(_ firstView:UIView!, secondView:UIView!, topOffset:CGFloat!, bottomOffset:CGFloat!) {
+        guard let firstBrotherView = firstView , firstView.superview == self.superview else {
             print("Brotherview \(firstView) has not the same superview as self \(self)")
             return
         }
-        guard let secondBrotherView = secondView where secondView.superview == self.superview else {
+        guard let secondBrotherView = secondView , secondView.superview == self.superview else {
             print("Brotherview \(secondView) has not the same superview as self \(self)")
             return
         }
         
-        self.y = CGRectGetMaxY(firstBrotherView.frame) + topOffset
-        self.height = CGRectGetMinY(secondBrotherView.frame) - self.y - bottomOffset
+        self.y = firstBrotherView.frame.maxY + topOffset
+        self.height = secondBrotherView.frame.minY - self.y - bottomOffset
     }
     
     public func centerHorizontal() {
         self.centerHorizontal(self.superview?.frame)
     }
     
-    public func centerHorizontal(size: CGSize!) {
+    public func centerHorizontal(_ size: CGSize!) {
         self.x = (size.width - self.width) / 2
     }
     
-    public func centerHorizontal(frame: CGRect!) {
+    public func centerHorizontal(_ frame: CGRect!) {
         self.centerHorizontal(frame.size)
     }
     
@@ -224,43 +224,43 @@ public extension UIView {
         self.centerVertical(self.superview?.frame)
     }
     
-    public func centerVertical(size: CGSize!) {
+    public func centerVertical(_ size: CGSize!) {
         self.y = (size.height - self.height) / 2
     }
     
-    public func centerVertical(frame: CGRect!) {
+    public func centerVertical(_ frame: CGRect!) {
         self.centerVertical(frame.size)
     }
     
-    public func assignX(view:UIView!) {
+    public func assignX(_ view:UIView!) {
         view.x = self.x
     }
     
-    public func assignY(view:UIView!) {
+    public func assignY(_ view:UIView!) {
         view.y = self.y
     }
     
-    public func assignWidth(view:UIView!) {
+    public func assignWidth(_ view:UIView!) {
         view.width = self.width
     }
     
-    public func assignHeight(view:UIView!) {
+    public func assignHeight(_ view:UIView!) {
         view.height = self.height
     }
     
-    public func verticalGradient(topColor:UIColor!, bottomColor:UIColor!) {
-        var gradient = CAGradientLayer()
-        gradient.colors = [topColor.CGColor, bottomColor.CGColor]
+    public func verticalGradient(_ topColor:UIColor!, bottomColor:UIColor!) {
+        let gradient = CAGradientLayer()
+        gradient.colors = [topColor.cgColor, bottomColor.cgColor]
         gradient.locations = [0.0, 1.0]
         gradient.frame = self.bounds
-        layer.insertSublayer(gradient, atIndex: 0)
+        layer.insertSublayer(gradient, at: 0)
     }
     
     public func removeEveryGradientLayer() {
         var i:Int = 0
         for subLayer in Array(layer.sublayers!) {
-            if subLayer.isKindOfClass(CAGradientLayer) {
-                layer.sublayers?.removeAtIndex(i)
+            if subLayer.isKind(of: CAGradientLayer.self) {
+                layer.sublayers?.remove(at: i)
                 i = i - 1
             }
             i = i + 1
@@ -269,7 +269,7 @@ public extension UIView {
     
     public func firstGradientLayer() -> CAGradientLayer? {
         for subLayer in Array(layer.sublayers!) {
-            if subLayer.isKindOfClass(CAGradientLayer) {
+            if subLayer.isKind(of: CAGradientLayer.self) {
                 return subLayer as! CAGradientLayer
             }
         }
