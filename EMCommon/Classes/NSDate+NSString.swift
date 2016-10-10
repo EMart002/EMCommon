@@ -8,25 +8,25 @@
 
 import Foundation
 
-public extension Date {
+public extension NSDate {
     
-    public func stringWithFormat(_ dateFormat:String!) -> String? {
+    public func stringWithFormat(dateFormat:String!) -> String? {
         
         return self.stringWithFormat(dateFormat, timezone: nil)
     }
     
-    public func stringWithFormat(_ dateFormat:String!, timezone:TimeZone?) -> String? {
+    public func stringWithFormat(dateFormat:String!, timezone:NSTimeZone?) -> String? {
     
-        let df = DateFormatter()
+        let df = NSDateFormatter()
         df.dateFormat = dateFormat
         
         if timezone != nil {
             df.timeZone = timezone
         }
         else {
-            df.timeZone = TimeZone.current
+            df.timeZone = NSTimeZone.defaultTimeZone()
         }
         
-        return df.string(from: self)
+        return df.stringFromDate(self)
     }
 }

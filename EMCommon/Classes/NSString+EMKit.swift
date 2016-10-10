@@ -10,12 +10,12 @@ import UIKit
 
 public extension NSString {
     
-    public func size(_ font: UIFont!, contraintSize:CGSize!) -> CGSize {
+    public func size(font: UIFont!, contraintSize:CGSize!) -> CGSize {
     
-        if self.responds(to: #selector(NSString.boundingRect(with:options:attributes:context:))) {
+        if self.respondsToSelector(#selector(self.boundingRectWithSize(_:options:attributes:context:))) {
             
-            return self.boundingRect(with: contraintSize,
-                                             options:NSStringDrawingOptions.usesLineFragmentOrigin,
+            return self.boundingRectWithSize(contraintSize,
+                                             options:NSStringDrawingOptions.UsesLineFragmentOrigin,
                                              attributes: [NSFontAttributeName:font],
                                              context: nil).size
         }
@@ -25,7 +25,7 @@ public extension NSString {
     
     public func numberOfLines(_ font: UIFont!, contraintSize:CGSize!) -> Int {
         
-        let aSize:CGSize = NSString(string: "A").size(font, contraintSize:CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
+        let aSize:CGSize = NSString(string: "A").size(font, contraintSize:CGSize(width: CGFloat.max, height: CGFloat.max))
         let textSize:CGSize = self.size(font, contraintSize:contraintSize)
     
         let d = textSize.height / aSize.height
