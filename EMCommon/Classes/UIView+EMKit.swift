@@ -98,10 +98,10 @@ public extension UIView {
     
     @IBInspectable public var borderColor: UIColor {
         get {
-            return UIColor(cgColor: layer.borderColor!)
+            return UIColor(CGColor: layer.borderColor!)
         }
         set {
-            layer.borderColor = newValue.cgColor;
+            layer.borderColor = newValue.CGColor;
         }
     }
     
@@ -139,7 +139,7 @@ public extension UIView {
     }
     
     public func alignBelow(_ view:UIView!, offset:CGFloat!) {
-        guard let brotherView = view , view.superview == self.superview else {
+        guard let brotherView = view where view.superview == self.superview else {
             print("Brotherview \(view) has not the same superview as self \(self)")
             return
         }
@@ -147,7 +147,7 @@ public extension UIView {
     }
     
     public func alignAbove(_ view:UIView!, offset:CGFloat!) {
-        guard let brotherView = view , view.superview == self.superview else {
+        guard let brotherView = view where view.superview == self.superview else {
             print("Brotherview \(view) has not the same superview as self \(self)")
             return
         }
@@ -155,7 +155,7 @@ public extension UIView {
     }
     
     public func alignTrailing(_ view:UIView!, offset:CGFloat!) {
-        guard let brotherView = view , view.superview == self.superview else {
+        guard let brotherView = view where view.superview == self.superview else {
             print("Brotherview \(view) has not the same superview as self \(self)")
             return
         }
@@ -163,7 +163,7 @@ public extension UIView {
     }
     
     public func alignLeading(_ view:UIView!, offset:CGFloat!) {
-        guard let brotherView = view , view.superview == self.superview else {
+        guard let brotherView = view where view.superview == self.superview else {
             print("Brotherview \(view) has not the same superview as self \(self)")
             return
         }
@@ -176,11 +176,11 @@ public extension UIView {
     }
     
     public func resizeHorizontal(_ firstView:UIView!, secondView:UIView!, leftOffset:CGFloat!, rightOffset:CGFloat!) {
-        guard let firstBrotherView = firstView , firstView.superview == self.superview else {
-            print("Brotherview \(firstView) has not the same superview as self \(self)")
+        guard let firstBrotherView = firstView where firstView.superview == self.superview else {
+            print("Brotherview \(firstView) hasnot the same superview as self \(self)")
             return
         }
-        guard let secondBrotherView = secondView , secondView.superview == self.superview else {
+        guard let secondBrotherView = secondView where secondView.superview == self.superview else {
             print("Brotherview \(secondView) has not the same superview as self \(self)")
             return
         }
@@ -195,11 +195,11 @@ public extension UIView {
     }
     
     public func resizeVertical(_ firstView:UIView!, secondView:UIView!, topOffset:CGFloat!, bottomOffset:CGFloat!) {
-        guard let firstBrotherView = firstView , firstView.superview == self.superview else {
+        guard let firstBrotherView = firstView where firstView.superview == self.superview else {
             print("Brotherview \(firstView) has not the same superview as self \(self)")
             return
         }
-        guard let secondBrotherView = secondView , secondView.superview == self.superview else {
+        guard let secondBrotherView = secondView where secondView.superview == self.superview else {
             print("Brotherview \(secondView) has not the same superview as self \(self)")
             return
         }
@@ -250,17 +250,17 @@ public extension UIView {
     
     public func verticalGradient(_ topColor:UIColor!, bottomColor:UIColor!) {
         let gradient = CAGradientLayer()
-        gradient.colors = [topColor.cgColor, bottomColor.cgColor]
+        gradient.colors = [topColor.CGColor, bottomColor.CGColor]
         gradient.locations = [0.0, 1.0]
         gradient.frame = self.bounds
-        layer.insertSublayer(gradient, at: 0)
+        layer.insertSublayer(gradient, atIndex: 0)
     }
     
     public func removeEveryGradientLayer() {
         var i:Int = 0
         for subLayer in Array(layer.sublayers!) {
-            if subLayer.isKind(of: CAGradientLayer.self) {
-                layer.sublayers?.remove(at: i)
+            if subLayer.isKindOfClass(CAGradientLayer) {
+                layer.sublayers?.removeAtIndex(i)
                 i = i - 1
             }
             i = i + 1
@@ -269,7 +269,7 @@ public extension UIView {
     
     public func firstGradientLayer() -> CAGradientLayer? {
         for subLayer in Array(layer.sublayers!) {
-            if subLayer.isKind(of: CAGradientLayer.self) {
+            if subLayer.isKindOfClass(CAGradientLayer) {
                 return subLayer as! CAGradientLayer
             }
         }

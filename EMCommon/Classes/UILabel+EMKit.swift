@@ -11,11 +11,11 @@ import UIKit
 public extension UILabel {
     
     public func optimizeForOneLine() {
-        adjustSize(widthConstraint: CGFloat.greatestFiniteMagnitude, heightConstraint: CGFloat.greatestFiniteMagnitude)
+        adjustSize(CGFloat.max, heightConstraint: CGFloat.max)
     }
     
     public func adjustHeight() {
-        adjustHeight(widthConstraint: self.frame.width)
+        adjustHeight(self.frame.width)
     }
     
     public func adjustHeight(widthConstraint:CGFloat) {
@@ -28,7 +28,7 @@ public extension UILabel {
         }
         
         
-        self.adjustHeight(widthConstraint: widthConstraint, heightConstraint: CGFloat.greatestFiniteMagnitude)
+        self.adjustHeight(widthConstraint, heightConstraint: CGFloat.max)
     }
     
     public func adjustHeight(widthConstraint:CGFloat, heightConstraint:CGFloat) {

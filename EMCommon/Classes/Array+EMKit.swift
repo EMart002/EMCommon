@@ -18,22 +18,22 @@ public extension Array {
     public func reverseShift( _ amount: Int = 1) -> [Element] {
         var amountMutable = amount
         amountMutable = count-amountMutable-1
-        let a: [Element] = self.reversed()
+        let a: [Element] = self.reverse()
         return a.shiftRight(amountMutable)
     }
-    public mutating func shiftItemAtIndex( _ index:Int, toIndex:Int) -> [Element] {
+    public mutating func shiftItemAtIndex(index:Int, toIndex:Int) -> [Element] {
         let element = self[index]
         if toIndex < index {
-            insert(element, at: toIndex)
-            remove(at: index + 1)
+            insert(element, atIndex: toIndex)
+            removeAtIndex(index + 1)
         } else {
             if toIndex + 1 >= count {
                 append(element)
             }
             else {
-                insert(element, at: toIndex + 1)
+                insert(element, atIndex: toIndex + 1)
             }
-            remove(at: index)
+            removeAtIndex(index)
         }
         return self
     }

@@ -8,57 +8,57 @@
 
 import Foundation
 
-public func < (first: Date, second: Date) -> Bool {
-    return first.compare(second) == .orderedAscending
+public func < (first: NSDate, second:NSDate) -> Bool {
+    return first.compare(second) == .OrderedAscending
 }
 
-public func > (first: Date, second: Date) -> Bool {
-    return first.compare(second) == .orderedDescending
+public func > (first:NSDate, second:NSDate) -> Bool {
+    return first.compare(second) == .OrderedDescending
 }
 
-public func <= (first: Date, second: Date) -> Bool {
+public func <= (first:NSDate, second:NSDate) -> Bool {
     let cmp = first.compare(second)
-    return cmp == .orderedAscending || cmp == .orderedSame
+    return cmp == .OrderedAscending || cmp == .OrderedSame
 }
 
-public func >= (first: Date, second: Date) -> Bool {
+public func >= (first:NSDate, second:NSDate) -> Bool {
     let cmp = first.compare(second)
-    return cmp == .orderedDescending || cmp == .orderedSame
+    return cmp == .OrderedDescending || cmp == .OrderedSame
 }
 
-public func == (first: Date, second: Date) -> Bool {
-    return first.compare(second) == .orderedSame
+public func == (first:NSDate, second:NSDate) -> Bool {
+    return first.compare(second) == .OrderedSame
 }
 
-public extension Date {
+public extension NSDate {
 
     public var year:Int {
         get {
-            return (Calendar.current as NSCalendar).component(.year, from: self)
+            return (NSCalendar.currentCalendar() as NSCalendar).component(.Year, fromDate: self)
         }
     }
     
-    public func dateBySettingYear(_ year:Int) -> Date? {
-        return (Calendar.current as NSCalendar).date(bySettingUnit: .year, value:year, of: self, options: .wrapComponents)
+    public func dateBySettingYear(year:Int) ->NSDate? {
+        return (NSCalendar.currentCalendar() as NSCalendar).dateBySettingUnit(.Year, value: year, ofDate: self, options: .WrapComponents)
     }
     
     public var month:Int {
         get {
-            return (Calendar.current as NSCalendar).component(.month, from: self)
+            return (NSCalendar.currentCalendar() as NSCalendar).component(.Month, fromDate: self)
         }
     }
     
-    public func dateBySettingMonth(_ month:Int) -> Date? {
-        return (Calendar.current as NSCalendar).date(bySettingUnit: .month, value:month, of: self, options: .wrapComponents)
+    public func dateBySettingMonth(month:Int) ->NSDate? {
+        return (NSCalendar.currentCalendar() as NSCalendar).dateBySettingUnit(.Month, value:month, ofDate: self, options:.WrapComponents)
     }
     
     public var day:Int {
         get {
-            return (Calendar.current as NSCalendar).component(.day, from: self)
+            return (NSCalendar.currentCalendar() as NSCalendar).component(.Day, fromDate: self)
         }
     }
     
-    public func dateBySettingDay(_ day:Int) -> Date? {
-        return (Calendar.current as NSCalendar).date(bySettingUnit: .day, value:day, of: self, options: .wrapComponents)
+    public func dateBySettingDay(day:Int) ->NSDate? {
+        return (NSCalendar.currentCalendar() as NSCalendar).dateBySettingUnit(.Day, value:day, ofDate: self, options: .WrapComponents)
     }
 }
